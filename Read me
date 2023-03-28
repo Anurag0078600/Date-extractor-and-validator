@@ -1,14 +1,33 @@
-I Am trying to learn python from Al-Sweigart-automate-the-boring-stuff-with-Python:
-and below is the practice project from that book, where we have to extract date from text using regular expression:
-Date Detection
-Write a regular expression that can detect dates in the DD/MM/YYYY format. Assume that the days range from 01 to 31, the months range from 01 
-to 12, and the years range from 1000 to 2999. Note that if the day or month 
-is a single digit, it’ll have a leading zero.
-The regular expression doesn’t have to detect correct days for each 
-month or for leap years; it will accept nonexistent dates like 31/02/2020 or 
-31/04/2021. Then store these strings into variables named month, day, and 
-year, and write additional code that can detect if it is a valid date. April, 
-June, September, and November have 30 days, February has 28 days, and 
-the rest of the months have 31 days. February has 29 days in leap years. 
-Leap years are every year evenly divisible by 4, except for years evenly divisible by 100, unless the year is also evenly divisible by 400. Note how this calculation makes it impossible to make a reasonably sized regular expression 
-that can detect a valid date.
+import re     # to import regular expression module
+
+date = re.compile(r'(0)?\d{1,2}/(0)?\d{1,2}/\d{4}')  #setting up the matching criteria in a string
+message = input('please enter your birthdate \n')    # string where we need to search date
+dateextractor = date.search(message)                 # date search in process
+birthdate = dateextractor.group()                    # date search result
+authenticateBday = birthdate.split('/')               # created list object so that we can assign seperate variable to each part of the date
+day,month,year = authenticateBday                    # tuple unpacking to assign a variable to each element of the list
+Month = int(month)
+Day = int(day)
+Year = int(year)
+if (int(month) > 0 and int(month)<13) and (int(day)<=31) and (int(year)>1947):    # date validator
+    if Month in [4,6,9,11] and Day <= 30:
+        print(f'Day of your birth is : {Day}')
+        print(f'Month of your birth is : {Month}')
+        print(f'Year of your birth is : {Year}')
+    elif Month == 2 and (Year%4 == 0 or Year%400 == 0) and Day <=29:
+        print(f'Day of your birth is : {Day}')
+        print(f'Month of your birth is : {Month}')
+        print(f'Year of your birth is : {Year}')
+    elif Month == 2 and (Year%4 != 0 or Year%400 != 0) and Day <=28:
+        print(f'Day of your birth is : {Day}')
+        print(f'Month of your birth is : {Month}')
+        print(f'Year of your birth is : {Year}')
+    elif Month in [1,3,5,7,8,10,12] :
+        print(f'Day of your birth is : {Day}')
+        print(f'Month of your birth is : {Month}')
+        print(f'Year of your birth is : {Year}')
+    else:
+        print('please enter valid date')
+    
+else:
+    print('please enter valid date')
