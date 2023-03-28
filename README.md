@@ -21,7 +21,7 @@ that can detect a valid date.
 Major Activities:
 1. Create Regular expression - that detects date in format DD/MM/YYYY.
 
-2.Store these String in variable : Day, month, Year.
+2. Store these String in variable : Day, month, Year.
 
 3. Check if date is valid, date with in range (1,31) , month with in range(1,12), year(for leap year feb- 29 else feb- 28).
 
